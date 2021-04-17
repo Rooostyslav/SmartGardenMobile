@@ -1,5 +1,6 @@
 ﻿using SmartGardenMobile.Models;
 using SmartGardenMobile.Services;
+using SmartGardenMobile.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +11,9 @@ namespace SmartGardenMobile.ViewModels
 {
 	public class BaseViewModel : INotifyPropertyChanged
 	{
-		public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+		public IUserService UserService => DependencyService.Get<IUserService>();
+		public IGardenService GardenService => DependencyService.Get<IGardenService>();
+		public IPlantService PlantService => DependencyService.Get<IPlantService>();
 
 		bool isBusy = false;
 		public bool IsBusy

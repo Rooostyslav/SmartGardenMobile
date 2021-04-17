@@ -1,8 +1,5 @@
 ﻿using SmartGardenMobile.Services;
-using SmartGardenMobile.Views;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace SmartGardenMobile
 {
@@ -13,7 +10,10 @@ namespace SmartGardenMobile
 		{
 			InitializeComponent();
 
-			DependencyService.Register<MockDataStore>();
+			DependencyService.Register<UserService>();
+			DependencyService.Register<GardenService>();
+			DependencyService.Register<PlantService>();
+
 			MainPage = new AppShell();
 		}
 

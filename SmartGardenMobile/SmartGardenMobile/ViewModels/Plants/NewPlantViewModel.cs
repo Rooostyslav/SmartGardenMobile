@@ -1,35 +1,35 @@
-﻿using SmartGardenMobile.Models;
+﻿using SmartGardenMobile.Models.Plants;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace SmartGardenMobile.ViewModels
+namespace SmartGardenMobile.ViewModels.Plants
 {
-	public class NewItemViewModel : BaseViewModel
+	public class NewPlantViewModel : BaseViewModel
 	{
-		private string text;
+		private string name;
 		private string description;
+		private string location;
 
-		public NewItemViewModel()
+		public NewPlantViewModel()
 		{
 			SaveCommand = new Command(OnSave, ValidateSave);
 			CancelCommand = new Command(OnCancel);
+
 			this.PropertyChanged +=
 				(_, __) => SaveCommand.ChangeCanExecute();
 		}
 
 		private bool ValidateSave()
 		{
-			return !String.IsNullOrWhiteSpace(text)
-				&& !String.IsNullOrWhiteSpace(description);
+			return !String.IsNullOrWhiteSpace(name)
+				&& !String.IsNullOrWhiteSpace(description)
+				&& !String.IsNullOrWhiteSpace(location);
 		}
 
-		public string Text
+		public string Name
 		{
-			get => text;
-			set => SetProperty(ref text, value);
+			get => name;
+			set => SetProperty(ref name, value);
 		}
 
 		public string Description
@@ -38,25 +38,32 @@ namespace SmartGardenMobile.ViewModels
 			set => SetProperty(ref description, value);
 		}
 
+		public string Location
+		{
+			get => location;
+			set => SetProperty(ref location, value);
+		}
+
 		public Command SaveCommand { get; }
 		public Command CancelCommand { get; }
 
 		private async void OnCancel()
 		{
-			// This will pop the current page off the navigation stack
 			await Shell.Current.GoToAsync("..");
 		}
 
 		private async void OnSave()
 		{
-			Item newItem = new Item()
+			Plant newPlant = new Plant()
 			{
-				Id = Guid.NewGuid().ToString(),
-				Text = Text,
-				Description = Description
+				Id = 5,
+				Name = Name,
+				Description = Description,
+				Location = Location,
+				GardenId = 1
 			};
 
-			await DataStore.AddItemAsync(newItem);
+			await PlantService.CreatePlantAsync(newPlant);
 
 			// This will pop the current page off the navigation stack
 			await Shell.Current.GoToAsync("..");

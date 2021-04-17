@@ -1,18 +1,24 @@
-﻿using SmartGardenMobile.ViewModels;
-using SmartGardenMobile.Views;
+﻿using SmartGardenMobile.Views;
+using SmartGardenMobile.Views.Gardens;
+using SmartGardenMobile.Views.Plants;
 using System;
-using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace SmartGardenMobile
 {
-	public partial class AppShell : Xamarin.Forms.Shell
+	public partial class AppShell : Shell
 	{
 		public AppShell()
 		{
 			InitializeComponent();
-			Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-			Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+
+			Routing.RegisterRoute(nameof(GardenDetailPage), typeof(GardenDetailPage));
+			Routing.RegisterRoute(nameof(NewGardenPage), typeof(NewGardenPage));
+
+			Routing.RegisterRoute(nameof(PlantDetailPage), typeof(PlantDetailPage));
+			Routing.RegisterRoute(nameof(NewPlantPage), typeof(NewPlantPage));
+
+			Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
 		}
 
 		private async void OnMenuItemClicked(object sender, EventArgs e)

@@ -6,10 +6,12 @@ namespace SmartGardenMobile.Services.Interfaces
 {
 	public interface IUserService
 	{
-		Task<ViewUser> FindMyUserAsync();
+		Task<User> LoginAsync(string email, string password);
 
-		Task<ViewUser> FindUserByIdAsync(int userId);
+		Task<User> FindMyUserAsync();
 
-		Task<IEnumerable<ViewUser>> FindAllUsers();
+		Task<User> FindUserByIdAsync(int userId);
+
+		Task<IEnumerable<User>> FindAllUsers();
 	}
 }
