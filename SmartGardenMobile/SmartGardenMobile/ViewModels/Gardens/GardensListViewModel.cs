@@ -10,22 +10,22 @@ namespace SmartGardenMobile.ViewModels.Gardens
 {
 	public class GardensListViewModel : BaseViewModel
 	{
-		private Garden selectedGarden;
+		private ViewGarden selectedGarden;
 
-		public ObservableCollection<Garden> Gardens { get; }
+		public ObservableCollection<ViewGarden> Gardens { get; }
 		public Command LoadGardensCommand { get; }
 		public Command AddGardenCommand { get; }
-		public Command<Garden> GardenTapped { get; }
+		public Command<ViewGarden> GardenTapped { get; }
 
 		public GardensListViewModel()
 		{
 			Title = "Gardens List";
 
-			Gardens = new ObservableCollection<Garden>();
+			Gardens = new ObservableCollection<ViewGarden>();
 
 			LoadGardensCommand = new Command(async () => await ExecuteLoadGardensCommand());
 
-			GardenTapped = new Command<Garden>(OnGardenSelected);
+			GardenTapped = new Command<ViewGarden>(OnGardenSelected);
 
 			AddGardenCommand = new Command(OnAddGarden);
 		}
@@ -61,7 +61,7 @@ namespace SmartGardenMobile.ViewModels.Gardens
 			SelectedGarden = null;
 		}
 
-		public Garden SelectedGarden
+		public ViewGarden SelectedGarden
 		{
 			get => selectedGarden;
 			set
@@ -76,7 +76,7 @@ namespace SmartGardenMobile.ViewModels.Gardens
 			await Shell.Current.GoToAsync(nameof(NewGardenPage));
 		}
 
-		async void OnGardenSelected(Garden garden)
+		async void OnGardenSelected(ViewGarden garden)
 		{
 			if (garden == null)
 				return;

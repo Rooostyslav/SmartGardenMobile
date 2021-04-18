@@ -18,6 +18,7 @@ namespace SmartGardenMobile
 			Routing.RegisterRoute(nameof(PlantDetailPage), typeof(PlantDetailPage));
 			Routing.RegisterRoute(nameof(NewPlantPage), typeof(NewPlantPage));
 
+			Routing.RegisterRoute(nameof(AboutPage), typeof(AboutPage));
 			Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
 		}
 

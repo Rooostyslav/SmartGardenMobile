@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -22,6 +24,23 @@ namespace SmartGardenMobile.Services
 		{
 			string result = await GetClient().GetStringAsync(url);
 			return JsonSerializer.Deserialize<TResult>(result, options);
+		}
+
+		protected async Task<bool> PostQueryAsync<T>(string url, T obj)
+		{
+			var stringContext = 
+				new StringContent(
+					JsonSerializer.Serialize(obj), 
+					Encoding.UTF8, "application/json");
+
+			var response = await GetClient().PostAsync(url, stringContext);
+			
+			if (response.StatusCode == HttpStatusCode.OK)
+			{
+				return true;
+			}
+
+			return false;
 		}
 	}
 }
