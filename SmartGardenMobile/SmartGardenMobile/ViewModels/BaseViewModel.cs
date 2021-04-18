@@ -1,6 +1,4 @@
-﻿using SmartGardenMobile.Models;
-using SmartGardenMobile.Services;
-using SmartGardenMobile.Services.Interfaces;
+﻿using SmartGardenMobile.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +9,7 @@ namespace SmartGardenMobile.ViewModels
 {
 	public class BaseViewModel : INotifyPropertyChanged
 	{
+		public IAuthService AuthService => DependencyService.Get<IAuthService>();
 		public IUserService UserService => DependencyService.Get<IUserService>();
 		public IGardenService GardenService => DependencyService.Get<IGardenService>();
 		public IPlantService PlantService => DependencyService.Get<IPlantService>();

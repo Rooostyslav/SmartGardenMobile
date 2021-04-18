@@ -1,24 +1,58 @@
-﻿using SmartGardenMobile.Views;
+﻿using SmartGardenMobile.Models.Business;
+using SmartGardenMobile.Views;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace SmartGardenMobile.ViewModels
 {
 	public class LoginViewModel : BaseViewModel
 	{
+		private string email;
+		private string password;
+
+		public string Email
+		{
+			get => email;
+			set => SetProperty(ref email, value);
+		}
+
+		public string Password
+		{
+			get => password;
+			set => SetProperty(ref password, value);
+		}
+
 		public Command LoginCommand { get; }
 
 		public LoginViewModel()
 		{
-			LoginCommand = new Command(OnLoginClicked);
+			LoginCommand = new Command(OnLoginClicked, Validate);
 		}
 
-		private async void OnLoginClicked(object obj)
+		private bool Validate()
 		{
-			// Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-			await Shell.Current.GoToAsync($"{nameof(AboutPage)}");
+			return String.IsNullOrWhiteSpace(email)
+				&& String.IsNullOrWhiteSpace(password);
+		}
+
+		private async void OnLoginClicked()
+		{
+			Login login = new Login
+			{
+				Email = email,
+				Password = password
+			};
+
+			bool result = await AuthService.LoginAsync(login);
+
+			if (result)
+			{
+				await Shell.Current.GoToAsync("..");
+			}
+			else
+			{
+				await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
+			}
 		}
 	}
 }

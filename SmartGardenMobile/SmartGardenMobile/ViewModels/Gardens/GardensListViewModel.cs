@@ -37,7 +37,7 @@ namespace SmartGardenMobile.ViewModels.Gardens
 			try
 			{
 				Gardens.Clear();
-				var gardens = await GardenService.FindGardensByUserAsync(2);
+				var gardens = await GardenService.FindMyGardensAsync();
 
 				foreach(var garden in gardens)
 				{

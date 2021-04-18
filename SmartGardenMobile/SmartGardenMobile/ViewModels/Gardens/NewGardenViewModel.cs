@@ -48,10 +48,9 @@ namespace SmartGardenMobile.ViewModels.Gardens
 		{
 			Garden newGarden = new Garden()
 			{
-				Id = 5,
 				Name = Name,
 				Description = Description,
-				UserId = 2
+				UserId = 0
 			};
 
 			await GardenService.CreateGardenAsync(newGarden);

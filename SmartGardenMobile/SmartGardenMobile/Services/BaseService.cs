@@ -3,11 +3,14 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Net.Http.Headers;
 
 namespace SmartGardenMobile.Services
 {
 	public abstract class BaseService
 	{
+		private const string nameAccessToken = "access_token";
+
 		private JsonSerializerOptions options = new JsonSerializerOptions
 		{
 			PropertyNameCaseInsensitive = true,
@@ -17,7 +20,25 @@ namespace SmartGardenMobile.Services
 		{
 			HttpClient client = new HttpClient();
 			client.DefaultRequestHeaders.Add("Accept", "application/json");
+
+			if (IsAuthorized())
+			{
+				string token = GetToken();
+				client.DefaultRequestHeaders.Authorization =
+					new AuthenticationHeaderValue("Bearer", token);
+			}
+
 			return client;
+		}
+
+		protected bool IsAuthorized()
+		{
+			return App.Current.Properties.ContainsKey(nameAccessToken);
+		}
+
+		private string GetToken()
+		{
+			return App.Current.Properties[nameAccessToken].ToString();
 		}
 
 		protected async Task<TResult> GetQueryAsync<TResult>(string url)
@@ -26,15 +47,20 @@ namespace SmartGardenMobile.Services
 			return JsonSerializer.Deserialize<TResult>(result, options);
 		}
 
-		protected async Task<bool> PostQueryAsync<T>(string url, T obj)
+		protected async Task<HttpResponseMessage> PostQueryWithResponseAsync<T>(string url, T obj)
 		{
-			var stringContext = 
+			var stringContext =
 				new StringContent(
-					JsonSerializer.Serialize(obj), 
+					JsonSerializer.Serialize(obj),
 					Encoding.UTF8, "application/json");
 
-			var response = await GetClient().PostAsync(url, stringContext);
-			
+			return await GetClient().PostAsync(url, stringContext);
+		}
+
+		protected async Task<bool> PostQueryAsync<T>(string url, T obj)
+		{
+			var response = await PostQueryWithResponseAsync(url, obj);
+
 			if (response.StatusCode == HttpStatusCode.OK)
 			{
 				return true;

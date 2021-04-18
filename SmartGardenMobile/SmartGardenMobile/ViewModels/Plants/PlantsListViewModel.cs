@@ -1,10 +1,8 @@
 ﻿using SmartGardenMobile.Models.Plants;
 using SmartGardenMobile.Views.Plants;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -12,22 +10,22 @@ namespace SmartGardenMobile.ViewModels.Plants
 {
 	public class PlantsListViewModel : BaseViewModel
 	{
-		private Plant selectedPlant;
+		private ViewPlant selectedPlant;
 
-		public ObservableCollection<Plant> Plants { get; }
+		public ObservableCollection<ViewPlant> Plants { get; }
 		public Command LoadPlantsCommand { get; }
 		public Command AddPlantCommand { get; }
-		public Command<Plant> PlantTapped { get; }
+		public Command<ViewPlant> PlantTapped { get; }
 
 		public PlantsListViewModel()
 		{
 			Title = "Gardens List";
 
-			Plants = new ObservableCollection<Plant>();
+			Plants = new ObservableCollection<ViewPlant>();
 
 			LoadPlantsCommand = new Command(async () => await ExecuteLoadPlantsCommand());
 
-			PlantTapped = new Command<Plant>(OnPlantSelected);
+			PlantTapped = new Command<ViewPlant>(OnPlantSelected);
 
 			AddPlantCommand = new Command(OnAddPlant);
 		}
@@ -39,7 +37,7 @@ namespace SmartGardenMobile.ViewModels.Plants
 			try
 			{
 				Plants.Clear();
-				var items = await PlantService.FindPlantsByUserAsync(2);
+				var items = await PlantService.FindMyPlantsAsync();
 
 				foreach (var item in items)
 				{
@@ -63,7 +61,7 @@ namespace SmartGardenMobile.ViewModels.Plants
 			SelectedPlant = null;
 		}
 
-		public Plant SelectedPlant
+		public ViewPlant SelectedPlant
 		{
 			get => selectedPlant;
 			set
@@ -78,7 +76,7 @@ namespace SmartGardenMobile.ViewModels.Plants
 			await Shell.Current.GoToAsync(nameof(NewPlantPage));
 		}
 
-		async void OnPlantSelected(Plant plant)
+		async void OnPlantSelected(ViewPlant plant)
 		{
 			if (plant == null)
 				return;

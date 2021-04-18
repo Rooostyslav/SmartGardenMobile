@@ -6,11 +6,11 @@ namespace SmartGardenMobile.Services.Interfaces
 {
 	public interface IPlantService
 	{
-		Task<IEnumerable<Plant>> FindPlantsByGardenAsync(int gardenId);
+		Task<IEnumerable<ViewPlant>> FindMyPlantsAsync();
 
-		Task<Plant> FindPlantByIdAsync(int id);
+		Task<IEnumerable<ViewPlant>> FindPlantsByGardenAsync(int gardenId);
 
-		Task<IEnumerable<Plant>> FindPlantsByUserAsync(int userId);
+		Task<ViewPlant> FindPlantByIdAsync(int id);
 
 		Task CreatePlantAsync(Plant plant);
 	}

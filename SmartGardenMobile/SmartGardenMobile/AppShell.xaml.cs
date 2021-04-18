@@ -1,4 +1,5 @@
-﻿using SmartGardenMobile.Views;
+﻿using SmartGardenMobile.Services.Interfaces;
+using SmartGardenMobile.Views;
 using SmartGardenMobile.Views.Gardens;
 using SmartGardenMobile.Views.Plants;
 using System;
@@ -24,7 +25,10 @@ namespace SmartGardenMobile
 
 		private async void OnMenuItemClicked(object sender, EventArgs e)
 		{
-			await Shell.Current.GoToAsync("//LoginPage");
+			var authService = DependencyService.Get<IAuthService>();
+			await authService.Logout();
+
+			await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
 		}
 	}
 }
