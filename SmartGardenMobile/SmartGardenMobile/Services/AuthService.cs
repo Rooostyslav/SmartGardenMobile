@@ -7,13 +7,11 @@ namespace SmartGardenMobile.Services
 {
 	public class AuthService : BaseService, IAuthService
 	{
-		private const string nameAccessToken = "access_token";
-		const string domain = "http://192.168.1.4:5001";
 		private readonly string baseUrl;
 
 		public AuthService()
 		{
-			baseUrl = domain + "/api/auth/";
+			baseUrl = domain_auth_api + "/api/auth/";
 		}
 
 		public async Task<bool> LoginAsync(Login login)

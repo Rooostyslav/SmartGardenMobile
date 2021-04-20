@@ -6,7 +6,6 @@ namespace SmartGardenMobile
 {
 	public partial class App : Application
 	{
-
 		public App()
 		{
 			InitializeComponent();
@@ -15,21 +14,12 @@ namespace SmartGardenMobile
 			DependencyService.Register<UserService>();
 			DependencyService.Register<GardenService>();
 			DependencyService.Register<PlantService>();
+			DependencyService.Register<ActionService>();
+			DependencyService.Register<ResourceService>();
 
 			MainPage = new AppShell();
 
 			CheckLogin();
-		}
-
-		private void CheckLogin()
-		{
-			var authService = DependencyService.Get<IAuthService>();
-			bool isLogged = authService.IsLogged().Result;
-
-			if (!isLogged)
-			{
-				Shell.Current.GoToAsync("LoginPage");
-			}
 		}
 
 		protected override void OnStart()
@@ -42,6 +32,17 @@ namespace SmartGardenMobile
 
 		protected override void OnResume()
 		{
+		}
+
+		private void CheckLogin()
+		{
+			var authService = DependencyService.Get<IAuthService>();
+			bool isLogged = authService.IsLogged().Result;
+
+			if (!isLogged)
+			{
+				Shell.Current.GoToAsync("LoginPage");
+			}
 		}
 	}
 }

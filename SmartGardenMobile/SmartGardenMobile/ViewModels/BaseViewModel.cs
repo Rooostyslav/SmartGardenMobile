@@ -13,6 +13,8 @@ namespace SmartGardenMobile.ViewModels
 		public IUserService UserService => DependencyService.Get<IUserService>();
 		public IGardenService GardenService => DependencyService.Get<IGardenService>();
 		public IPlantService PlantService => DependencyService.Get<IPlantService>();
+		public IActionService ActionService => DependencyService.Get<IActionService>();
+		public IResourceService ResourceService => DependencyService.Get<IResourceService>();
 
 		bool isBusy = false;
 		public bool IsBusy

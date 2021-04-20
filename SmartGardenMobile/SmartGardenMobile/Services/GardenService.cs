@@ -7,12 +7,11 @@ namespace SmartGardenMobile.Services
 {
 	public class GardenService : BaseService, IGardenService
 	{
-		const string domain = "http://192.168.1.4:5000";
 		private readonly string baseUrl;
 
 		public GardenService()
 		{
-			baseUrl = domain + "/api/gardens/";
+			baseUrl = domain_api + "/api/gardens/";
 		}
 
 		public async Task<ViewGarden> FindGardenByIdAsync(int gardenId)
@@ -23,7 +22,7 @@ namespace SmartGardenMobile.Services
 
 		public async Task<IEnumerable<ViewGarden>> FindGardensByUserAsync(int userId)
 		{
-			string url = domain + "/api/users/" + userId + "/gardens/";
+			string url = domain_api + "/api/users/" + userId + "/gardens/";
 			return await GetQueryAsync<IEnumerable<ViewGarden>>(url);
 		}
 

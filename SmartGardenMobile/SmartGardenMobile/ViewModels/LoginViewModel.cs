@@ -7,8 +7,8 @@ namespace SmartGardenMobile.ViewModels
 {
 	public class LoginViewModel : BaseViewModel
 	{
-		private string email;
-		private string password;
+		private string email = "user1@gmail.com";
+		private string password = "user1";
 
 		public string Email
 		{
@@ -23,16 +23,23 @@ namespace SmartGardenMobile.ViewModels
 		}
 
 		public Command LoginCommand { get; }
+		public Command RegistrationCommand { get; }
 
 		public LoginViewModel()
 		{
 			LoginCommand = new Command(OnLoginClicked, Validate);
+			RegistrationCommand = new Command(RedirectToRegisterPage);
 		}
 
 		private bool Validate()
 		{
-			return String.IsNullOrWhiteSpace(email)
-				&& String.IsNullOrWhiteSpace(password);
+			return !String.IsNullOrWhiteSpace(email)
+				&& !String.IsNullOrWhiteSpace(password);
+		}
+
+		private async void RedirectToRegisterPage()
+		{
+			await Shell.Current.GoToAsync($"{nameof(RegisterPage)}");
 		}
 
 		private async void OnLoginClicked()

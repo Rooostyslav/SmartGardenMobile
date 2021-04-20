@@ -9,7 +9,11 @@ namespace SmartGardenMobile.Services
 {
 	public abstract class BaseService
 	{
-		private const string nameAccessToken = "access_token";
+		protected const string domain_api = "http://192.168.1.4:5000";
+
+		protected const string domain_auth_api = "http://192.168.1.4:5001";
+
+		protected const string nameAccessToken = "access_token";
 
 		private JsonSerializerOptions options = new JsonSerializerOptions
 		{

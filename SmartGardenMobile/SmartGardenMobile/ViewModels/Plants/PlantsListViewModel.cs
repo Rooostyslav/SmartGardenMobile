@@ -19,7 +19,7 @@ namespace SmartGardenMobile.ViewModels.Plants
 
 		public PlantsListViewModel()
 		{
-			Title = "Gardens List";
+			Title = "Plants List";
 
 			Plants = new ObservableCollection<ViewPlant>();
 

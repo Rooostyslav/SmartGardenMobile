@@ -7,12 +7,11 @@ namespace SmartGardenMobile.Services
 {
 	public class PlantService : BaseService, IPlantService
 	{
-		const string domain = "http://192.168.1.4:5000";
 		private string baseUrl;
 
 		public PlantService()
 		{
-			baseUrl = domain + "/api/plants/";
+			baseUrl = domain_api + "/api/plants/";
 		}
 
 		public async Task CreatePlantAsync(Plant plant)
@@ -28,7 +27,7 @@ namespace SmartGardenMobile.Services
 
 		public async Task<IEnumerable<ViewPlant>> FindPlantsByGardenAsync(int gardenId)
 		{
-			string url = domain + "/api/gardens/" + gardenId + "/plants";
+			string url = domain_api + "/api/gardens/" + gardenId + "/plants";
 			return await GetQueryAsync<IEnumerable<ViewPlant>>(url);
 		}
 
