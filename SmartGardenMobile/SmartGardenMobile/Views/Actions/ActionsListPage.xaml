@@ -2,12 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:local="clr-namespace:SmartGardenMobile.ViewModels.Actions" 
+             xmlns:local1="clr-namespace:SmartGardenMobile.Localization;assembly=SmartGardenMobile"
              xmlns:model="clr-namespace:SmartGardenMobile.Models.Actions"
              x:Class="SmartGardenMobile.Views.Actions.ActionsListPage"
-             Title="{Binding Title}">
+             Title="{local1:Translate ActionsList}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Action" Command="{Binding AddActionCommand}" />
+        <ToolbarItem Text="{local1:Translate AddAction}" Command="{Binding AddActionCommand}" />
     </ContentPage.ToolbarItems>
 
 

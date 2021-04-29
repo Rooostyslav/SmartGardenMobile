@@ -19,8 +19,6 @@ namespace SmartGardenMobile.ViewModels.Actions
 
 		public ActionsListViewModel()
 		{
-			Title = "Actions List";
-
 			Actions = new ObservableCollection<ViewAction>();
 
 			LoadActionsCommand = new Command(async () => await ExecuteLoadActionsCommand());

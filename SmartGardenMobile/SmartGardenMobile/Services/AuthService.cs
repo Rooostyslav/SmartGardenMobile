@@ -42,6 +42,7 @@ namespace SmartGardenMobile.Services
 
 		private void SetToken(string token)
 		{
+			RemoveToken();
 			App.Current.Properties.Add(nameAccessToken, token);
 		}
 

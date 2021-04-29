@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:local="clr-namespace:SmartGardenMobile.ViewModels.Plants" 
+             xmlns:local="clr-namespace:SmartGardenMobile.ViewModels.Plants"
+             xmlns:local1="clr-namespace:SmartGardenMobile.Localization;assembly=SmartGardenMobile"
              xmlns:model="clr-namespace:SmartGardenMobile.Models.Plants"
              x:Class="SmartGardenMobile.Views.Plants.PlantsListPage"
-             Title="{Binding Title}">
+             Title="{local1:Translate PlantsList}">
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Plant" Command="{Binding AddPlantCommand}" />
+        <ToolbarItem Text="{local1:Translate AddPlant}" Command="{Binding AddPlantCommand}" />
     </ContentPage.ToolbarItems>
 
 

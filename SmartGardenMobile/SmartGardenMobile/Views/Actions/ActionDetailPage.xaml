@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SmartGardenMobile.Localization;assembly=SmartGardenMobile"
              x:Class="SmartGardenMobile.Views.Actions.ActionDetailPage">
 
     <StackLayout Spacing="20" Padding="15">
-        <Label Text="Name and Description:" FontSize="Medium" />
+        <Label Text="{local:Translate NameAndDescription}" FontSize="Medium" />
         <Label Text="{Binding Name}" FontSize="Small"/>
-        <Label Text="Status:" FontSize="Medium" />
+        <Label Text="{local:Translate Status}" FontSize="Medium" />
         <Label Text="{Binding Status}" FontSize="Small"/>
-        <Label Text="Date:" FontSize="Medium" />
+        <Label Text="{local:Translate Date}" FontSize="Medium" />
         <Label Text="{Binding Date}" FontSize="Small"/>
     </StackLayout>
 </ContentPage>

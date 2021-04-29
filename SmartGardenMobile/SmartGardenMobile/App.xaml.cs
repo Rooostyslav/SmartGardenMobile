@@ -19,6 +19,8 @@ namespace SmartGardenMobile
 
 			MainPage = new AppShell();
 
+			Shell.Current.GoToAsync("LoginPage");
+
 			CheckLogin();
 		}
 
@@ -36,13 +38,13 @@ namespace SmartGardenMobile
 
 		private void CheckLogin()
 		{
-			var authService = DependencyService.Get<IAuthService>();
-			bool isLogged = authService.IsLogged().Result;
+			//var authService = DependencyService.Get<IAuthService>();
+			//bool isLogged = authService.IsLogged().Result;
 
-			if (!isLogged)
-			{
-				Shell.Current.GoToAsync("LoginPage");
-			}
+			//if (!isLogged)
+			//{
+			//	Shell.Current.GoToAsync("LoginPage");
+			//}
 		}
 	}
 }

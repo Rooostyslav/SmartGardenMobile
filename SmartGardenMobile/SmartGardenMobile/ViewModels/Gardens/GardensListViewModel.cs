@@ -19,8 +19,6 @@ namespace SmartGardenMobile.ViewModels.Gardens
 
 		public GardensListViewModel()
 		{
-			Title = "Gardens List";
-
 			Gardens = new ObservableCollection<ViewGarden>();
 
 			LoadGardensCommand = new Command(async () => await ExecuteLoadGardensCommand());

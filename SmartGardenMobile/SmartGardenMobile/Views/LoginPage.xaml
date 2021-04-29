@@ -4,20 +4,20 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:viewmodels="clr-namespace:SmartGardenMobile.ViewModels" 
+             xmlns:local="clr-namespace:SmartGardenMobile.Localization;assembly=SmartGardenMobile"
              x:DataType="viewmodels:LoginViewModel"
              mc:Ignorable="d"
              x:Class="SmartGardenMobile.Views.LoginPage"
              Shell.NavBarIsVisible="False">
+    
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-
-            <Label Text="Email" FontSize="Medium" />
+            <Label Text="{local:Translate Email}" FontSize="Medium" />
             <Entry Text="{Binding Email, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Password" FontSize="Medium" />
+            <Label Text="{local:Translate Password}" FontSize="Medium" />
             <Editor Text="{Binding Password, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
-
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
-            <Button VerticalOptions="Center" Text="Registration" Command="{Binding RegistrationCommand}"/>
+            <Button VerticalOptions="Center" Text="{local:Translate Login}" Command="{Binding LoginCommand}"/>
+            <Button VerticalOptions="Center" Text="{local:Translate Registration}" Command="{Binding RegistrationCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

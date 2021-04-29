@@ -2,12 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:local="clr-namespace:SmartGardenMobile.ViewModels.Resources" 
+             xmlns:local1="clr-namespace:SmartGardenMobile.Localization;assembly=SmartGardenMobile"
              xmlns:model="clr-namespace:SmartGardenMobile.Models.Resources"
              x:Class="SmartGardenMobile.Views.Resources.ResourcesListPage"
-             Title="{Binding Title}">
+             Title="{local1:Translate ResourcesList}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Resource" Command="{Binding AddResourceCommand}" />
+        <ToolbarItem Text="{local1:Translate AddResource}" Command="{Binding AddResourceCommand}" />
     </ContentPage.ToolbarItems>
 
 

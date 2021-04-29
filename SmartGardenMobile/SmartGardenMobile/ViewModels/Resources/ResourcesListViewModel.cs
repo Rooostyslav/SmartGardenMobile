@@ -19,8 +19,6 @@ namespace SmartGardenMobile.ViewModels.Resources
 
 		public ResourcesListViewModel()
 		{
-			Title = "Resources List";
-
 			Resources = new ObservableCollection<ViewResource>();
 
 			LoadResourcesCommand = new Command(async () => await ExecuteLoadResourcesCommand());

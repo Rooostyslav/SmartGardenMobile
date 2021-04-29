@@ -26,15 +26,32 @@ namespace SmartGardenMobile.ViewModels
 		}
 
 		public Command MoveToGardensListCommand { get; }
+		//public Command ChangeLanguageCommand { get; }
 
 		public UserCabinetViewModel()
 		{
-			Title = "User Cabinet";
-
 			MoveToGardensListCommand = new Command(async () => await ExecuteMoveToGardensListCommand());
 
 			LoadUser();
 		}
+
+		//private void ChangeLanguage()
+		//{
+		//	string key = "lang";
+		//	if (App.Current.Properties.ContainsKey(key))
+		//	{
+		//		if (App.Current.Properties[key].ToString() == "en-US")
+		//		{
+		//			App.Current.Properties.Remove(key);
+		//			App.Current.Properties.Add(key, "uk-UA");
+		//		}
+		//	}
+		//	else
+		//	{
+		//		App.Current.Properties.Remove(key);
+		//		App.Current.Properties.Add(key, "en-US");
+		//	}
+		//}
 
 		private async Task ExecuteMoveToGardensListCommand()
 		{
